@@ -23,10 +23,10 @@ function Timer({title, timerSeconds = 120}) {
     <div>
       { seconds == 0 ? 
         <p class='green-text'>{title}:: {minutes}:{remainingSeconds < 10 ? `0${remainingSeconds}` : remainingSeconds}
-            <button onClick={resetTimer}>Reset Timer!!</button></p> 
+            <button class="reset-button" onClick={resetTimer}>Reset Timer!!</button></p> 
             :
         <p>{title}:: {minutes}:{remainingSeconds < 10 ? `0${remainingSeconds}` : remainingSeconds}
-            <button onClick={resetTimer}>Reset Timer</button></p>     
+            <button class="reset-button" onClick={resetTimer}>Reset Timer</button></p>     
       }
     </div>
   );
