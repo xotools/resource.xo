@@ -21,8 +21,13 @@ function Timer({title, timerSeconds = 120}) {
 
   return (
     <div>
-      <p>{title}:: {minutes}:{remainingSeconds < 10 ? `0${remainingSeconds}` : remainingSeconds}
-      <button onClick={resetTimer}>Reset Timer</button></p>
+      { seconds == 0 ? 
+        <p class='green-text'>{title}:: {minutes}:{remainingSeconds < 10 ? `0${remainingSeconds}` : remainingSeconds}
+            <button onClick={resetTimer}>Reset Timer!!</button></p> 
+            :
+        <p>{title}:: {minutes}:{remainingSeconds < 10 ? `0${remainingSeconds}` : remainingSeconds}
+            <button onClick={resetTimer}>Reset Timer</button></p>     
+      }
     </div>
   );
 }
