@@ -1,9 +1,18 @@
 import { createRoot } from "react-dom/client";
-import React from 'react';
+import React, { useEffect } from 'react';
 import './style.css';
 import Timer from "./Timer";
+import NoSleep from 'nosleep.js';
+
 
 const App = () => {
+
+  useEffect(() => {
+    const noSleep = new NoSleep();
+    noSleep.enable();
+    return () => noSleep.disable();
+  }, []);
+
   return (
     <div className="app">
       <h1>Hell Let Loose XO Resource Manager</h1>
