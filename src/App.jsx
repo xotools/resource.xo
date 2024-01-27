@@ -7,6 +7,15 @@ import NoSleep from 'nosleep.js';
 
 const App = () => {
 
+  const abilities = [
+    { title: "Establish Airhead", refreshTime: 600 },
+    { title: "Encourage", refreshTime: 600 },
+    { title: "Ammo Drop", refreshTime: 600 },
+    { title: "Supply Drop", refreshTime: 120 },
+    { title: "Recon Plane", refreshTime: 300 },
+    { title: "Supply Truck", refreshTime: 90 },
+  ];
+
   useEffect(() => {
     const noSleep = new NoSleep();
     noSleep.enable();
@@ -16,12 +25,9 @@ const App = () => {
   return (
     <div className="app">
       <h1>Hell Let Loose XO Resource Manager</h1>
-      <Timer title = "Establish Airhead" timerSeconds={600}/>
-      <Timer title = "Encouraged" timerSeconds={600}/>
-      <Timer title = "Ammo Drop" timerSeconds={600}/>
-      <Timer title = "Supply Drop" timerSeconds={120}/>
-      <Timer title = "Recon Plane" timerSeconds={300}/>
-      <Timer title = "Supply Truck" timerSeconds={90} />
+      {abilities.map((abilities, index) => (
+        <Timer key={index} title={abilities.title} timerSeconds={abilities.refreshTime} />
+      ))}
     </div>
   );
 };
