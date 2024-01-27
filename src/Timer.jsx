@@ -6,11 +6,11 @@ function Timer({title, timerSeconds, reset}) {
   return (
     <div>
       { timerSeconds == 0 ? 
-        <p class='green-text'>{title}:: {minutes}:{remainingSeconds < 10 ? `0${remainingSeconds}` : remainingSeconds}
-            <button class="reset-button-timer-stopped" onClick={() => reset(title)}>Reset Timer!!</button></p> 
+        <p className='green-text'>{title}:: {minutes}:{remainingSeconds < 10 ? `0${remainingSeconds}` : remainingSeconds}
+            <button className="reset-button-timer-stopped" onClick={() => reset(title)}>Reset Timer!!</button></p> 
             :
         <p>{title}:: {minutes}:{remainingSeconds < 10 ? `0${remainingSeconds}` : remainingSeconds}
-            <button class="reset-button-timer-running" onClick={() => reset(title)}>Reset Timer</button></p>     
+            <button className="reset-button-timer-running" onClick={() => reset(title)}>Reset Timer</button></p>     
       }
     </div>
   );
