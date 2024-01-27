@@ -1,5 +1,5 @@
 import { createRoot } from "react-dom/client";
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import './style.css';
 import Timer from "./Timer";
 import NoSleep from 'nosleep.js';
@@ -7,14 +7,40 @@ import NoSleep from 'nosleep.js';
 
 const App = () => {
 
-  const abilities = [
-    { title: "Establish Airhead", refreshTime: 600 },
-    { title: "Encourage", refreshTime: 600 },
-    { title: "Ammo Drop", refreshTime: 600 },
-    { title: "Supply Drop", refreshTime: 120 },
-    { title: "Recon Plane", refreshTime: 300 },
-    { title: "Supply Truck", refreshTime: 90 },
-  ];
+
+
+  const [abilities, setAbilities] = useState([
+    { title: "Establish Airhead", refreshTime: 600 , remainingSeconds: 0},
+    { title: "Encourage", refreshTime: 600 , remainingSeconds: 0 },
+    { title: "Ammo Drop", refreshTime: 600, remainingSeconds: 0 },
+    { title: "Supply Drop", refreshTime: 120, remainingSeconds: 0 },
+    { title: "Recon Plane", refreshTime: 300, remainingSeconds: 0 },
+    { title: "Supply Truck", refreshTime: 90, remainingSeconds: 0 },
+  ]);
+
+  useEffect(() => {
+    const intervalId = setInterval(() => {
+      setAbilities(abilities => abilities.map(ability => {
+        if (ability.remainingSeconds > 0) {
+          return { ...ability, remainingSeconds: ability.remainingSeconds - 1 };
+        } else {
+          return ability;
+        }
+      }));
+    }, 1000);
+
+    return () => clearInterval(intervalId);
+  }, []);
+
+    const reset = (title) => {
+      setAbilities(abilities => abilities.map(ability => {
+        if (ability.title === title) {
+          return { ...ability, remainingSeconds: ability.refreshTime };
+        } else {
+          return ability;
+        }
+      }));
+    };
 
   useEffect(() => {
     const noSleep = new NoSleep();
@@ -26,7 +52,7 @@ const App = () => {
     <div className="app">
       <h1>Hell Let Loose XO Resource Manager</h1>
       {abilities.map((abilities, index) => (
-        <Timer key={index} title={abilities.title} timerSeconds={abilities.refreshTime} />
+        <Timer key={index} title={abilities.title} timerSeconds={abilities.remainingSeconds} reset={reset} />
       ))}
     </div>
   );

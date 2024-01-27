@@ -1,32 +1,16 @@
-import React, { useState, useEffect } from 'react';
+function Timer({title, timerSeconds, reset}) {
 
-function Timer({title, timerSeconds = 120}) {
-  const [seconds, setSeconds] = useState(timerSeconds);
-
-  useEffect(() => {
-    if (seconds > 0) {
-      const timerId = setTimeout(() => {
-        setSeconds(seconds - 1);
-      }, 1000);
-      return () => clearTimeout(timerId);
-    }
-  }, [seconds]);
-
-  const minutes = Math.floor(seconds / 60);
-  const remainingSeconds = seconds % 60;
-
-  const resetTimer = () => {
-    setSeconds(timerSeconds);
-  };
+  const minutes = Math.floor(timerSeconds / 60);
+  const remainingSeconds = timerSeconds % 60;
 
   return (
     <div>
-      { seconds == 0 ? 
+      { timerSeconds == 0 ? 
         <p class='green-text'>{title}:: {minutes}:{remainingSeconds < 10 ? `0${remainingSeconds}` : remainingSeconds}
-            <button class="reset-button-timer-stopped" onClick={resetTimer}>Reset Timer!!</button></p> 
+            <button class="reset-button-timer-stopped" onClick={() => reset(title)}>Reset Timer!!</button></p> 
             :
         <p>{title}:: {minutes}:{remainingSeconds < 10 ? `0${remainingSeconds}` : remainingSeconds}
-            <button class="reset-button-timer-running" onClick={resetTimer}>Reset Timer</button></p>     
+            <button class="reset-button-timer-running" onClick={() => reset(title)}>Reset Timer</button></p>     
       }
     </div>
   );
