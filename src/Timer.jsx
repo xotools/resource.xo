@@ -14,7 +14,7 @@ function Timer({title, timerSeconds, reset}) {
         </div>
             :
         <div className="grid grid-cols-3 gap-2 justify-start content-start">
-            <div className="my-5 max-w-40 px-5">{title}:: </div> 
+            <div className="my-5 max-w-40 px-5">{title} </div> 
             <div className="my-5 max-w-10"> {minutes}:{remainingSeconds < 10 ? `0${remainingSeconds}` : remainingSeconds}</div>
             <div className="content-start"><button className="reset-button-timer-running" onClick={() => reset(title)}>Reset Timer</button>     </div>
         </div>
