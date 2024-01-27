@@ -50,18 +50,18 @@ const App = () => {
 
   return (
     <div className="app">
-      <h1>Hell Let Loose Exeuctive Officer</h1>
-      {abilities.sort((a, b) => {
-      if (a.remainingSeconds > b.remainingSeconds) {
-        return 1;
-      } else if (b.remainingSeconds > a.remainingSeconds) {
-        return -1;
-      } else {
-        return a.title.localeCompare(b.title);
-      }
-    }).map((ability, index) => (
-      <Timer key={index} title={ability.title} timerSeconds={ability.remainingSeconds} reset={reset} />
-    ))}
+      <h1 className="text-2xl">Hell Let Loose Exeuctive Officer</h1>
+        {abilities.sort((a, b) => {
+        if (a.remainingSeconds > b.remainingSeconds) {
+          return 1;
+        } else if (b.remainingSeconds > a.remainingSeconds) {
+          return -1;
+        } else {
+          return a.title.localeCompare(b.title);
+        }
+      }).map((ability, index) => (
+        <Timer key={index} title={ability.title} timerSeconds={ability.remainingSeconds} reset={reset} />
+      ))}
     </div>
   );
 };
