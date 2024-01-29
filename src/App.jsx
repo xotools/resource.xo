@@ -51,6 +51,7 @@ const App = () => {
   return (
     <div className="app">
       <h1 className="text-2xl">Hell Let Loose Exeuctive Officer</h1>
+      <div>
         {abilities.sort((a, b) => {
         if (a.remainingSeconds > b.remainingSeconds) {
           return 1;
@@ -62,6 +63,7 @@ const App = () => {
       }).map((ability, index) => (
         <Timer key={index} title={ability.title} timerSeconds={ability.remainingSeconds} reset={reset} />
       ))}
+      </div>
     </div>
   );
 };
