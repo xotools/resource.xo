@@ -50,7 +50,9 @@ const App = () => {
 
   return (
     <div className="app">
-      <h1 className="text-2xl">Hell Let Loose Exeuctive Officer</h1>
+      <div>
+        <h1 className="text-2xl text-center">Hell Let Loose Exeuctive Officer</h1>
+      </div>
       <div>
         {abilities.sort((a, b) => {
         if (a.remainingSeconds > b.remainingSeconds) {
